@@ -1,0 +1,41 @@
+.pagination {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.5em;
+  transition:  0.3s ease;
+}
+
+.pagination p{
+  cursor: pointer;
+  color: #111;
+  padding: 8px 16px;
+  background-color: #cfbe73;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s ease;
+  margin: 0 20px 0;
+}
+.pagination p:nth-child(5) {
+  margin: 0;
+}
+
+.pagination p:hover {
+  background-color: rgb(220, 149, 104);
+}
+.pagination h1 {
+  align-self: center;
+  font-size: 25px;
+  margin: 5px;
+}
+
+.pagination input {
+  border: 2px solid #CDC8D1;
+  border-radius: 5px;
+  width: 2.5em;
+  text-align: center;
+  font-size: 1.3rem;
+  margin-left: 10px;
+  outline: none;
+}

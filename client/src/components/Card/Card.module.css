@@ -1,0 +1,26 @@
+.cardContainer {
+  display: flex;
+  background-color: rgba(247, 212, 172, 0.9);
+  width: 270px;
+  height: auto;
+  border-radius: 10px;
+  margin: 5px;
+  border: 2px solid #f4f5f6;
+  cursor: pointer;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  color: #503101;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+}
+
+.img {
+  width: 240px;
+  height: 170px;
+  border-radius: 20px;
+}
