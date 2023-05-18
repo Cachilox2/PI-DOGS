@@ -24,13 +24,8 @@
 .pagination p:hover {
   background-color: rgb(220, 149, 104);
 }
-.pagination h1 {
-  align-self: center;
-  font-size: 25px;
-  margin: 5px;
-}
 
-.pagination input {
+.inputP {
   border: 2px solid #CDC8D1;
   border-radius: 5px;
   width: 2.5em;

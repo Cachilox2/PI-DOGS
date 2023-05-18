@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Pagination.module.css"
+import styles from "./Pagination.module.css";
 
 const Pagination = ({
   dogsPerPage,
@@ -66,8 +66,16 @@ const Pagination = ({
   return (
     <div className={styles.pagination}>
       <p onClick={handleBack}>&laquo;</p>
-      <input onChange={(e) => handleInputChange(e)} value={input} />
-      <input value={"/" + pageNumbers.length} readOnly />
+      <input
+        className={styles.inputP}
+        onChange={(e) => handleInputChange(e)}
+        value={input}
+      />
+      <input
+        className={styles.inputP}
+        value={"/" + pageNumbers.length}
+        readOnly
+      />
       <p onClick={handleForward}>&raquo;</p>
       <p onClick={handleReset}>⭯</p>
     </div>

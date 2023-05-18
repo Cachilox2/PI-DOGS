@@ -10,6 +10,7 @@
 .title {
   font-size: 2.4rem;
   color: #DA8858;
+  text-align: center;
 }
 
 .logo {
@@ -19,6 +20,8 @@
 }
 
 .home {
+  display: block;
+  margin: auto;
   text-align: center;
   text-transform: uppercase;
   cursor: pointer;
@@ -55,6 +58,7 @@
     padding: 0.3rem;
     border-radius: 10px;
     transition: color 0.2s ease;
+    text-align: center;
   }
   .title:hover {
     color: #111;

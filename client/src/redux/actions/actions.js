@@ -5,15 +5,15 @@ const URL_BASE = "http://localhost:3001/dogs";
 export const details = (detailID) => {
   return async (dispatch) => {
     try {
+      console.log(detailID);
       const { data } = await axios(`${URL_BASE}/${detailID}`);
-      if (!data.length) throw Error("No se puedo encontrar ese perro");
 
       dispatch({
         type: ActionTypes.DETAILS,
         payload: data,
       });
     } catch (error) {
-      console.error(error.message);
+      console.error("Details" +error.message);
     }
   };
 };
@@ -61,7 +61,7 @@ export const postDog = (dog) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(`${URL_BASE}`, dog);
-      if (!data.length) throw Error("Error al crear un perro");
+
       dispatch({
         type: ActionTypes.POST_DOG,
         payload: data,

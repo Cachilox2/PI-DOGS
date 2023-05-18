@@ -1,13 +1,14 @@
 import "./App.css";
-import { Routes, Route, useLocation } from "react-router-dom";
 import { useState, useEffect, useCallback } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-// import axios from "axios";
+import { getAllDogs, getTemperaments, getByBreed } from "./redux/actions/actions";
 
 import Landing from "./pages/Landing/Landing";
 import Home from "./pages/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
-import { getAllDogs, getTemperaments, getByBreed } from "./redux/actions/actions";
+import Form from "./pages/Form/Form";
+import DogDetail from "./components/DogDetail/DogDetail";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -28,14 +29,14 @@ function App() {
     dispatch(getAllDogs());
   }, [dispatch])
 
+  const onSearch = (race) => {
+    dispatch(getByBreed(race))
+  } 
+
   useEffect(() => {
     dispatch(getTemperaments());
     allDogs();
   }, [allDogs, dispatch]);
-
-  const onSearch = (race) => {
-    dispatch(getByBreed(race))
-  } 
 
   return (
     <div className="App">
@@ -56,6 +57,9 @@ function App() {
             />
           } 
         />
+        <Route path="/create" element={<Form />} />
+        <Route path="/detail/:id" element={<DogDetail />} />
+
       </Routes>
     </div>
   );

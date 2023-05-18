@@ -68,9 +68,9 @@ const reducer = (state = initialState, { type, payload }) => {
         breeds: payload,
       };
     case ActionTypes.GET_BY_BREED:
-      return { 
-        ...state, 
-        dogs: payload 
+      return {
+        ...state,
+        dogs: payload,
       };
     case ActionTypes.GET_TEMPERAMENTS:
       return {
@@ -101,11 +101,7 @@ const reducer = (state = initialState, { type, payload }) => {
         (a, b) => Number(b.weightMin) - Number(a.weightMin)
       );
       return { ...state, dogs: orderMax };
-    case ActionTypes.RESET:
-      return {
-        ...state,
-        allDogs: state.allDogs
-      }
+      
     default:
       return { ...state };
   }

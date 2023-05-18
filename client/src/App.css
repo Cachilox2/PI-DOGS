@@ -2,5 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1.5em;
+  gap: 1em;
+}
+
+.container {
+  max-width: 1300px;
+  min-height: 100vh;
+  margin: 5rem auto 1rem;
+  padding: 1em;
 }
