@@ -101,7 +101,11 @@ const reducer = (state = initialState, { type, payload }) => {
         (a, b) => Number(b.weightMin) - Number(a.weightMin)
       );
       return { ...state, dogs: orderMax };
-      
+    case ActionTypes.CLEAN_DETAIL:
+      return {
+        ...state,
+        dogDetails: {},
+      };
     default:
       return { ...state };
   }

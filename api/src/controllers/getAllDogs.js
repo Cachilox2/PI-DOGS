@@ -105,6 +105,12 @@ const createDog = async (
   temperament
 ) => {
 
+  const dogsInfo = await getAllDogs();
+  const index = dogsInfo.length;
+  const id = dogsInfo[index - 1].id + 1;
+  console.log(index);
+  console.log(id);
+
   let getTemperaments = await Temperament.findAll({
     where: { name: temperament },
   });
@@ -114,6 +120,7 @@ const createDog = async (
   const [dog, created] = await Dog.findOrCreate({
     where: { name },
     defaults: {
+      id,
       name,
       image,
       heightMin,

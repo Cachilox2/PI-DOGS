@@ -5,7 +5,6 @@ const URL_BASE = "http://localhost:3001/dogs";
 export const details = (detailID) => {
   return async (dispatch) => {
     try {
-      console.log(detailID);
       const { data } = await axios(`${URL_BASE}/${detailID}`);
 
       dispatch({
@@ -13,7 +12,7 @@ export const details = (detailID) => {
         payload: data,
       });
     } catch (error) {
-      console.error("Details" +error.message);
+      console.error("Details" + error.message);
     }
   };
 };
@@ -51,6 +50,7 @@ export const orderWeightMax = () => {
     type: ActionTypes.ORDER_BY_WEIGHT_MAX,
   };
 };
+
 export const orderWeightMin = () => {
   return {
     type: ActionTypes.ORDER_BY_WEIGHT_MIN,
@@ -100,4 +100,8 @@ export const getTemperaments = () => {
       payload: data,
     });
   };
+};
+
+export const cleanDetail = () => {
+  return { type: ActionTypes.CLEAN_DETAIL };
 };
