@@ -1,6 +1,9 @@
+import styles from "./Home.module.css"
+
 import Cards from "../../components/Cards/Cards";
 import Pagination from "../../components/Pagination/Pagination";
-import styles from "./Home.module.css"
+import OrderBy from "../../components/OrderBy/OrderBy";
+import Filter from "../../components/Filter/Filter";
 
 const Home = ({
   dogs,
@@ -9,10 +12,15 @@ const Home = ({
   dogsPerPage,
   currentDogs,
   paginate,
-  onSearch
+  orderBy,
+  filter
 }) => {
   return (
     <div className={styles.container}>
+      <div className={styles.flex}>
+        <OrderBy orderBy={orderBy} />
+        <Filter filter={filter} paginate={paginate}/>
+      </div>
 
       <Cards dogs={currentDogs} />
       <Pagination

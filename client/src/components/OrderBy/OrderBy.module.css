@@ -1,0 +1,27 @@
+.orderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #503101;
+  height: 240px;
+  width: 150px;
+  background-color: rgb(255, 195, 116);
+  border-radius: 10px;
+  padding: 5px;
+  justify-content: space-evenly;
+}
+
+.orderContainer select {
+  margin: 12px;
+  height: 25px;
+  font-size: 14px;
+  border: 1px solid rgba(87, 54, 16, 0.9);
+  border-radius: 5px;
+  transition: 0.5s ease;
+  background-color: rgba(255, 240, 223, 0.9);
+}
+
+.orderContainer span {
+  font-size: 17px;
+  font-weight: 500;
+}

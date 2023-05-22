@@ -60,6 +60,16 @@ const reducer = (state = initialState, { type, payload }) => {
       }
       const filterBreed = state.allDogs.filter((e) => payload.includes(e.name));
       return { ...state, dogs: filterBreed };
+    case ActionTypes.FILTER_CREATED:
+      const allDogs = state.allDogs;
+      const filterCreated =
+        payload === "created"
+          ? allDogs.filter((d) => d.createdInDb)
+          : allDogs.filter((d) => !d.createdInDb);
+      return {
+        ...state,
+        dogs: payload === "all" ? state.allDogs : filterCreated,
+      };
     case ActionTypes.GET_ALL_DOGS:
       return {
         ...state,
@@ -91,16 +101,23 @@ const reducer = (state = initialState, { type, payload }) => {
         return { ...state, dogs: ordered.reverse() };
       }
       return state;
-    case ActionTypes.ORDER_BY_WEIGHT_MIN:
-      let orderMin = state.allDogs.sort(
-        (a, b) => Number(a.weightMin) - Number(b.weightMin)
-      );
-      return { ...state, dogs: orderMin };
-    case ActionTypes.ORDER_BY_WEIGHT_MAX:
-      let orderMax = state.allDogs.sort(
-        (a, b) => Number(b.weightMin) - Number(a.weightMin)
-      );
-      return { ...state, dogs: orderMax };
+    case ActionTypes.ORDER_BY_WEIGHT:
+      const copyWeight = [...state.dogs];
+      const orderedWeight = copyWeight.sort((a, b) => {
+        const weightA = Number(a.weightMin) || 0;
+        const weightB = Number(b.weightMax) || 0;
+
+        if (weightA < weightB) return -1;
+        if (weightA > weightB) return 1;
+        return 0;
+      });
+
+      if (payload === "Ascendent") {
+        return { ...state, dogs: orderedWeight };
+      } else if (payload === "Descendent") {
+        return { ...state, dogs: orderedWeight.reverse() };
+      }
+      return state;
     case ActionTypes.CLEAN_DETAIL:
       return {
         ...state,

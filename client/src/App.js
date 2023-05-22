@@ -2,13 +2,22 @@ import "./App.css";
 import { useState, useEffect, useCallback } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllDogs, getTemperaments, getByBreed } from "./redux/actions/actions";
+import {
+  getAllDogs,
+  getTemperaments,
+  getByBreed,
+  orderByAlphabet,
+  orderWeight,
+  filterByTemperament,
+  filterCreated
+} from "./redux/actions/actions";
 
 import Landing from "./pages/Landing/Landing";
 import Home from "./pages/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Form from "./pages/Form/Form";
 import DogDetail from "./components/DogDetail/DogDetail";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,7 +27,7 @@ function App() {
   const dogs = useSelector((state) => state.dogs);
 
   const location = useLocation();
-  const showNav = location.pathname !== "/";
+  const show = location.pathname !== "/";
 
   const indexOfLastDog = currentPage * dogsPerPage;
   const indexOfFirstDog = indexOfLastDog - dogsPerPage;
@@ -27,40 +36,58 @@ function App() {
 
   const allDogs = useCallback(() => {
     dispatch(getAllDogs());
-  }, [dispatch])
+  }, [dispatch]);
 
   const onSearch = (race) => {
-    dispatch(getByBreed(race))
-  } 
+    dispatch(getByBreed(race));
+  };
 
   useEffect(() => {
     dispatch(getTemperaments());
     allDogs();
   }, [allDogs, dispatch]);
 
+  const orderBy = (name, value) => {
+    if (name === "Alphabetic") {
+      dispatch(orderByAlphabet(value));
+    } else if (name === "Weight") {
+      dispatch(orderWeight(value));
+    }
+  };
+
+  const filter = (name, value) => {
+    if (name === "Temperaments") {
+      dispatch(filterByTemperament(value));
+    }else if(name === "FilterCreated") {
+      dispatch(filterCreated(value));
+    }
+  };
+
   return (
     <div className="App">
-      {showNav && <Navbar onSearch={onSearch} paginate={paginate} />}
+      {show && <Navbar onSearch={onSearch} paginate={paginate} />}
       <Routes>
         <Route path="/" element={<Landing />} />
 
-        <Route 
-          path="/home" 
+        <Route
+          path="/home"
           element={
             <Home
               currentPage={currentPage}
-              dogsPerPage={dogsPerPage} 
+              dogsPerPage={dogsPerPage}
               currentDogs={currentDogs}
               paginate={paginate}
-              dogs={dogs} 
-              allDogs={allDogs} 
+              dogs={dogs}
+              allDogs={allDogs}
+              orderBy={orderBy}
+              filter={filter}
             />
-          } 
+          }
         />
         <Route path="/create" element={<Form />} />
         <Route path="/detail/:id" element={<DogDetail />} />
-
       </Routes>
+      {show && <Footer />}
     </div>
   );
 }

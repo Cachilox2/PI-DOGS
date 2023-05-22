@@ -4,8 +4,8 @@ import { getWeightText } from "../../utils/formatText";
 
 const Card = ({ id, name, image, temperament, weightMin, weightMax }) => {
 
-  let temp = temperament?.split(",")?.slice(0, 3);
-  let tempTxT = temp?.join(", ");
+  // let temp = temperament?.split(",")?.slice(0, 3);
+  // let tempTxT = temp?.join(", ");
   let weightTxt = getWeightText(weightMin, weightMax);
 
   return (
@@ -18,7 +18,7 @@ const Card = ({ id, name, image, temperament, weightMin, weightMax }) => {
 
           <div className={styles.card_body}>
             <h3>{name}</h3>
-            <p>{tempTxT}</p> 
+            <p>{temperament}</p> 
           </div>
 
           <div className={styles.card_footer}>

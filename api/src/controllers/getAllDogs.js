@@ -14,6 +14,7 @@ const createDogObjDB = (res) => {
     lifeSpanMin,
     lifeSpanMax,
     Temperaments,
+    createdInDb
   } = res[0].dataValues;
 
   let dogTemperaments = Temperaments.map((data) => data.dataValues.name);
@@ -30,6 +31,7 @@ const createDogObjDB = (res) => {
     lifeSpanMin,
     lifeSpanMax,
     temperament: dogTemperaments,
+    createdInDb
   });
 };
 
@@ -70,7 +72,6 @@ const getDogsDb = async () => {
 const getAllDogs = async (name) => {
   const dogsApi = await getAllDogsApi();
   const dogsDB = await getDogsDb();
-
   const getAllDogs = dogsDB.concat(dogsApi);
 
   let oneDog = null;
@@ -102,14 +103,13 @@ const createDog = async (
   weightMax,
   lifeSpanMin,
   lifeSpanMax,
-  temperament
+  temperament,
+  createdInDb
 ) => {
 
   const dogsInfo = await getAllDogs();
   const index = dogsInfo.length;
   const id = dogsInfo[index - 1].id + 1;
-  console.log(index);
-  console.log(id);
 
   let getTemperaments = await Temperament.findAll({
     where: { name: temperament },
@@ -129,6 +129,7 @@ const createDog = async (
       weightMax,
       lifeSpanMin,
       lifeSpanMax,
+      createdInDb
     },
   });
 

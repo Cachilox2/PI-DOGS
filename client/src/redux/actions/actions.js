@@ -38,6 +38,13 @@ export const filterByTemperament = (value) => {
   };
 };
 
+export const filterCreated = (value) => {
+  return {
+    type: ActionTypes.FILTER_CREATED,
+    payload: value,
+  };
+};
+
 export const orderByAlphabet = (value) => {
   return {
     type: ActionTypes.ORDER_BY_ALPHABET,
@@ -45,15 +52,10 @@ export const orderByAlphabet = (value) => {
   };
 };
 
-export const orderWeightMax = () => {
+export const orderWeight = (value) => {
   return {
-    type: ActionTypes.ORDER_BY_WEIGHT_MAX,
-  };
-};
-
-export const orderWeightMin = () => {
-  return {
-    type: ActionTypes.ORDER_BY_WEIGHT_MIN,
+    type: ActionTypes.ORDER_BY_WEIGHT,
+    payload: value,
   };
 };
 
