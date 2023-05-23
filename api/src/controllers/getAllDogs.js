@@ -103,14 +103,18 @@ const createDog = async (
   weightMax,
   lifeSpanMin,
   lifeSpanMax,
-  temperament,
-  createdInDb
+  temperament
 ) => {
-
   const dogsInfo = await getAllDogs();
-  const index = dogsInfo.length;
-  const id = dogsInfo[index - 1].id + 1;
+  let maxId = 0;
 
+  dogsInfo.forEach(dog => {
+    if (dog.id > maxId) {
+      maxId = dog.id
+    }
+  });
+
+  const id = maxId + 1;
   let getTemperaments = await Temperament.findAll({
     where: { name: temperament },
   });
@@ -128,8 +132,7 @@ const createDog = async (
       weightMin,
       weightMax,
       lifeSpanMin,
-      lifeSpanMax,
-      createdInDb
+      lifeSpanMax
     },
   });
 

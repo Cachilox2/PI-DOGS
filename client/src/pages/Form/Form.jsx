@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { postDog } from "../../redux/actions/actions";
 import styles from "./Form.module.css";
 import validation from "../../utils/validation";
@@ -8,6 +8,7 @@ import validation from "../../utils/validation";
 const Form = () => {
   const dispatch = useDispatch();
   const temperaments = useSelector((state) => state.allTemperaments);
+  const navigate = useNavigate();
 
   const [isDisabled, setIsDisabled] = useState(false);
   const [dogTemperaments, setDogTemperament] = useState([]);
@@ -93,10 +94,11 @@ const Form = () => {
           lifeSpanMax: "",
         });
         setDogTemperament([]);
-
+      
         document
           .querySelectorAll("input[type=checkbox]")
           .forEach((el) => (el.checked = false));
+        navigate("/home");
       } else {
         window.alert("data is missing");
       }

@@ -39,7 +39,6 @@ const createDogsHandler = async (req, res) => {
       lifeSpanMin,
       lifeSpanMax,
       temperament,
-      createdInDb
     } = req.body;
 
     let newDog = await createDog(
@@ -52,7 +51,6 @@ const createDogsHandler = async (req, res) => {
       lifeSpanMin,
       lifeSpanMax,
       temperament,
-      createdInDb
     );
 
     return res.status(201).json(newDog);

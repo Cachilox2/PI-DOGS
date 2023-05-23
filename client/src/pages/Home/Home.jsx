@@ -17,12 +17,15 @@ const Home = ({
 }) => {
   return (
     <div className={styles.container}>
-      <div className={styles.flex}>
-        <OrderBy orderBy={orderBy} />
-        <Filter filter={filter} paginate={paginate}/>
+      <div className={styles.box}>
+        <div className={styles.flexFilter}>
+          <OrderBy orderBy={orderBy} />
+          <Filter filter={filter} paginate={paginate}/>
+        </div>
+        <div className={styles.FlexCard}>
+          <Cards dogs={currentDogs} />
+        </div>
       </div>
-
-      <Cards dogs={currentDogs} />
       <Pagination
         dogsPerPage={dogsPerPage}
         totalDogs={dogs.length}

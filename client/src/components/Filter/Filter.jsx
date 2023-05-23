@@ -4,21 +4,17 @@ import { useState } from "react";
 import { searchTemperament } from "../../redux/actions/actions";
 
 const Filter = ({ filter, paginate }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [checksTemperaments, setChecksTemperaments] = useState([]);
-
   const dispatch = useDispatch();
   const temperaments = useSelector((state) => state.temperaments);
+  const [checksTemperaments, setChecksTemperaments] = useState([]);
 
   const handleSearchTemp = (event) => {
-    const value = event.target.value || "";
-    setSearchTerm(value);
     dispatch(searchTemperament(event.target.value));
   };
 
   const handleChecksTemp = (e) => {
     const { checked, value } = e.target;
-    const updateList = checked
+    let updateList = checked
       ? [...checksTemperaments, value]
       : checksTemperaments.filter((temp) => temp !== value);
     setChecksTemperaments(updateList);
@@ -34,9 +30,9 @@ const Filter = ({ filter, paginate }) => {
   };
 
   const handleFilterCreated = (e) => {
-    filter("FilterCreated", e.target.value)
-    paginate(1)
-  }
+    filter("FilterCreated", e.target.value);
+    paginate(1);
+  };
 
   return (
     <div className={styles.filterContainer}>
@@ -49,8 +45,7 @@ const Filter = ({ filter, paginate }) => {
             className={styles.searchTemp}
             placeholder="Search temperaments"
             type="search"
-            value={searchTerm || ""}
-            onChange={handleSearchTemp}
+            onChange={(e) => handleSearchTemp(e)}
           />
           <button
             onClick={handleReset}
@@ -60,7 +55,6 @@ const Filter = ({ filter, paginate }) => {
             ⭯
           </button>
         </div>
-
         <section>
           {temperaments.map((temp) => {
             if (checksTemperaments.find((e) => e === temp.name)) {
@@ -94,13 +88,23 @@ const Filter = ({ filter, paginate }) => {
       </section>
       <span>Filter Created</span>
       <section>
-        <select className={styles.selectFilter} onChange={e => handleFilterCreated(e)} defaultValue={"DEFAULT"}>
-        <option disabled value={"DEFAULT"}>
-          Filter by created
-        </option>
-          <option key={1} value="all">All</option>
-          <option key={2} value="created">Created</option>
-          <option key={3} value="api">Api</option>
+        <select
+          className={styles.selectFilter}
+          onChange={(e) => handleFilterCreated(e)}
+          defaultValue={"DEFAULT"}
+        >
+          <option disabled value={"DEFAULT"}>
+            Filter by created
+          </option>
+          <option key={1} value="all">
+            All
+          </option>
+          <option key={2} value="created">
+            Created
+          </option>
+          <option key={3} value="api">
+            Api
+          </option>
         </select>
       </section>
     </div>

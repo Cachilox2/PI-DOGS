@@ -86,6 +86,7 @@ function App() {
         />
         <Route path="/create" element={<Form />} />
         <Route path="/detail/:id" element={<DogDetail />} />
+        <Route path="*" element={<h1>404 NOT FOUND</h1>} />
       </Routes>
       {show && <Footer />}
     </div>
