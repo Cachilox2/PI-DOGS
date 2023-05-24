@@ -1,11 +1,11 @@
 import { ActionTypes } from "../action-types/action-types";
 import axios from "axios";
-const URL_BASE = "http://localhost:3001/dogs";
+// const URL_BASE = "http://localhost:3001/";
 
 export const details = (detailID) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios(`${URL_BASE}/${detailID}`);
+      const { data } = await axios(`dogs/${detailID}`);
 
       dispatch({
         type: ActionTypes.DETAILS,
@@ -62,7 +62,7 @@ export const orderWeight = (value) => {
 export const postDog = (dog) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(`${URL_BASE}`, dog);
+      const { data } = await axios.post(`/dogs`, dog);
 
       dispatch({
         type: ActionTypes.POST_DOG,
@@ -76,7 +76,7 @@ export const postDog = (dog) => {
 
 export const getAllDogs = () => {
   return async (dispatch) => {
-    const { data } = await axios(URL_BASE);
+    const { data } = await axios("/dogs");
     dispatch({
       type: ActionTypes.GET_ALL_DOGS,
       payload: data,
@@ -86,7 +86,7 @@ export const getAllDogs = () => {
 
 export const getByBreed = (breed) => {
   return async (dispatch) => {
-    const { data } = await axios(`${URL_BASE}?name=${breed}`);
+    const { data } = await axios(`dogs?name=${breed}`);
     dispatch({
       type: ActionTypes.GET_BY_BREED,
       payload: data,
@@ -96,7 +96,7 @@ export const getByBreed = (breed) => {
 
 export const getTemperaments = () => {
   return async (dispatch) => {
-    const { data } = await axios("http://localhost:3001/temperaments");
+    const { data } = await axios("/temperaments");
     dispatch({
       type: ActionTypes.GET_TEMPERAMENTS,
       payload: data,

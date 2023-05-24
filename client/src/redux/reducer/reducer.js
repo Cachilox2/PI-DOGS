@@ -31,29 +31,24 @@ const reducer = (state = initialState, { type, payload }) => {
       });
       return { ...state, temperaments: temp };
     case ActionTypes.FILTER_BY_TEMPERAMENT:
-      let filterTemperament = [];
-      if (payload.length === 0) {
+      const selectedTemperaments = payload;
+
+      if (selectedTemperaments.length === 0) {
         return { ...state, dogs: state.allDogs };
       }
-      state.allDogs.forEach((dog) => {
+
+      const filteredDogs = state.allDogs.filter((dog) => {
         if (dog.temperament) {
-          let count = 0;
-          payload.forEach((e) => {
-            if (dog.temperament.includes(e)) {
-              count++;
-            }
-          });
-          if (count === payload.length) {
-            filterTemperament.push(dog);
-          }
-        } else {
-          return false;
+          const dogTemperaments = dog.temperament.split(", ");
+
+          return selectedTemperaments.every((temperament) =>
+            dogTemperaments.includes(temperament)
+          );
         }
+        return false;
       });
-      filterTemperament = filterTemperament.filter((e, i) => {
-        return filterTemperament.indexOf(e) === i;
-      });
-      return { ...state, dogs: filterTemperament };
+
+      return { ...state, dogs: filteredDogs };
     case ActionTypes.FILTER_BY_BREED:
       if (payload.length === 0) {
         return { ...state, dogs: state.allDogs };

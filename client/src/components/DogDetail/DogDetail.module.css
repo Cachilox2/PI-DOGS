@@ -6,18 +6,20 @@
   border-radius: 5px;
   box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.15);
   background-color: #fff;
-  color: #da8c17fa;
+  color: #61481C;
   overflow: hidden;
 }
 
 .backDetail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(250, 170, 78);
   border: 0px;
   border-radius: 100px;
   width: 50px;
   height: 40px;
   cursor: pointer;
-  font-size: 20px;
   transition: 0.5s ease;
 }
 .backDetail:hover {
@@ -129,7 +131,7 @@
   }
   .detail_content {
     height: 210px;
-    color: #8d8d8d;
+    color: #BF9742;
     line-height: 1.5em;
     font-size: 15px;
     overflow: hidden;

@@ -18,6 +18,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Form from "./pages/Form/Form";
 import DogDetail from "./components/DogDetail/DogDetail";
 import Footer from "./components/Footer/Footer";
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3001/"
 
 function App() {
   const [currentPage, setCurrentPage] = useState(1);
