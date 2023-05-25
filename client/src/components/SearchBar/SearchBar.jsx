@@ -1,11 +1,13 @@
-import searchIcon from "../../assets/loupe-icon.svg";
-import closeIcon from "../../assets/close-icon.png";
 import "./SearchBar.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import searchIcon from "../../assets/loupe-icon.svg";
+import closeIcon from "../../assets/close-icon.png";
 
 const SearchBar = ({ onSearch, paginate }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [race, setRace] = useState("");
+  const navigate = useNavigate();
 
   const handleOpenSearch = () => {
     setSearchOpen(true);
@@ -24,6 +26,7 @@ const SearchBar = ({ onSearch, paginate }) => {
     onSearch(race);
     setRace("");
     paginate(1);
+    navigate("/home");
   };
 
   return (
@@ -53,7 +56,7 @@ const SearchBar = ({ onSearch, paginate }) => {
           onChange={handleInputChange}
           value={race}
           type="search"
-          placeholder="Search dog name ..."
+          placeholder="Search dog name..."
         />
       </div>
     </form>
