@@ -40,14 +40,18 @@ function App() {
     dispatch(getAllDogs());
   }, [dispatch]);
 
+  const allTemps = useCallback(() => {
+    dispatch(getTemperaments());
+  }, [dispatch])
+
   const onSearch = (race) => {
     dispatch(getByBreed(race));
   };
 
   useEffect(() => {
-    dispatch(getTemperaments());
+    allTemps()
     allDogs();
-  }, [allDogs, dispatch]);
+  }, [allDogs, allTemps]);
 
   const orderBy = (name, value) => {
     if (name === "Alphabetic") {
@@ -83,6 +87,7 @@ function App() {
               allDogs={allDogs}
               orderBy={orderBy}
               filter={filter}
+              allTemps={allTemps}
             />
           }
         />
