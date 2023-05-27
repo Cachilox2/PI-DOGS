@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Pagination.module.css";
 import reset_icon from "../../assets/reset-icon.svg";
 
@@ -8,6 +8,8 @@ const Pagination = ({
   paginate,
   currentPage,
   allDogs,
+  checksTemperaments,
+  setChecksTemperaments
 }) => {
   const pageNumbers = [];
   const [numPage, setNumPage] = useState(currentPage);
@@ -58,11 +60,17 @@ const Pagination = ({
   };
 
   const handleReset = () => {
+    paginate(1);
     setInput(1);
     setNumPage(1);
-    paginate(1);
     allDogs();
+    setChecksTemperaments([])
   };
+
+  useEffect(() => {
+    setInput(1);
+    setNumPage(1);
+  }, [checksTemperaments])
 
   return (
     <div className={styles.pagination}>

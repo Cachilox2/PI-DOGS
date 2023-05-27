@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import searchIcon from "../../assets/loupe-icon.svg";
 import closeIcon from "../../assets/close-icon.png";
 
-const SearchBar = ({ onSearch, paginate }) => {
+const SearchBar = ({ onSearch }) => {
   const [searchOpen, setSearchOpen] = useState(false);
   const [race, setRace] = useState("");
   const navigate = useNavigate();
@@ -25,7 +25,6 @@ const SearchBar = ({ onSearch, paginate }) => {
     event.preventDefault();
     onSearch(race);
     setRace("");
-    paginate(1);
     navigate("/home");
   };
 
