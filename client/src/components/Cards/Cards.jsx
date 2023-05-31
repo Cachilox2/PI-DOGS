@@ -1,6 +1,5 @@
 import Card from "../Card/Card";
 
-
 const Cards = ({ dogs }) => {
   return (
     <div className="Cards-container">

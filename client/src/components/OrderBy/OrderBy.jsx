@@ -1,9 +1,6 @@
 import styles from "./OrderBy.module.css";
 import { useDispatch } from "react-redux";
-import {
-  orderByAlphabet,
-  orderWeight,
-} from "../../redux/actions/actions";
+import { orderByAlphabet, orderWeight } from "../../redux/actions/actions";
 
 const OrderBy = () => {
   const dispatch = useDispatch();

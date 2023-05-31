@@ -10,7 +10,7 @@
 .pagination p {
   cursor: pointer;
   color: #111;
-  font-size: 1.2em;
+  font-size: 1.3em;
   padding: 8px 16px;
   background-color: #bf9742;
   border-radius: 5px;
@@ -18,8 +18,11 @@
   transition: 0.3s ease;
   margin: 0 20px 0;
 }
+
 .pagination p:nth-child(5) {
   margin: 0;
+  display: flex;
+  align-items: center;
 }
 .pagination p img {
   display: flex;
